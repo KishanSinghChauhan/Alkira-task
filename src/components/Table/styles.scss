@@ -1,0 +1,68 @@
+@import '/src/styles/colors';
+
+.custom-table {
+	border-collapse: collapse;
+	width: 100%;
+
+	&.table-loader tbody tr {
+		background-color: currentColor;
+		width: 32px;
+		position: absolute;
+		left: 50%;
+		top: 60px;
+		border-radius: 50%;
+	}
+
+	& thead tr {
+		background-color: $primary;
+		color: $white;
+
+		& th {
+			font-weight: 700;
+		}
+	}
+
+	& tbody {
+		display: block;
+		height: calc(100vh - 250px);
+		overflow: auto;
+		tr {
+			background-color: #f8fbfd;
+			cursor: pointer;
+			margin-top: 12px;
+
+			&:hover {
+				background-color: #f2f2f2;
+			}
+
+			&.no-data-row {
+				background-color: unset;
+				text-align: center;
+				cursor: default;
+
+				&:hover {
+					background-color: unset;
+				}
+			}
+		}
+	}
+
+	& tr {
+		display: table;
+		width: 100%;
+		table-layout: fixed;
+		border-radius: 5px;
+	}
+
+	& td,
+	th {
+		padding: 16px 8px;
+		text-align: center;
+		font-weight: 500;
+		font-size: 16px;
+	}
+	& .no_data_img {
+		height: 350px;
+		width: 350px;
+	}
+}
