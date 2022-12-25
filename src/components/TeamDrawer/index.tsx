@@ -28,6 +28,14 @@ const TeamDrawer: FC<TeamDrawerProps> = ({ show, onHide }) => {
 			</Offcanvas.Header>
 			{!teamDetails.loading ? (
 				<Offcanvas.Body>
+					{teamDetails?.game?.home_team_score >
+						teamDetails?.game?.visitor_team_score && (
+						<img
+							src='./celebration.gif'
+							alt='celebration'
+							className={styles.celebration}
+						/>
+					)}
 					<div className={styles.detail}>
 						<span>Team Full Name</span>
 						<span>{teamDetails?.data?.full_name}</span>
