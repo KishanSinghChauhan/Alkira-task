@@ -50,7 +50,7 @@ const Table: FC<TableProps> = ({ columns, data, onRowClick, loading }) => {
 							key={_item.id}
 						>
 							{columns.map((d: TableHead) => (
-								<td key={d.title}>{_item[d.key]}</td>
+								<td key={d.title}>{_item[d.key] || '-'}</td>
 							))}
 						</tr>
 					))}
