@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Loader from 'components/Loader';
 import { FC, useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import ITeamProps from 'types';
 
 type TableHead = {
 	title: string;
@@ -14,7 +15,7 @@ type TableHead = {
 
 type TableProps = {
 	columns: TableHead[];
-	data: any[];
+	data: ITeamProps[];
 	onRowClick?: () => void;
 	loading?: boolean;
 	handleFilterSort?: () => void;
@@ -69,7 +70,7 @@ const Table: FC<TableProps> = ({
 						<tr
 							onClick={() => {
 								searchParams[1]({
-									team: _item.id,
+									team: String(_item.id),
 								});
 								if (onRowClick) {
 									onRowClick();
@@ -78,7 +79,7 @@ const Table: FC<TableProps> = ({
 							key={_item.id}
 						>
 							{columns.map((d: TableHead) => (
-								<td key={d.title}>{_item[d.key] || '-'}</td>
+								<td key={d.title}>{(_item as any)[d.key] || '-'}</td>
 							))}
 						</tr>
 					))}

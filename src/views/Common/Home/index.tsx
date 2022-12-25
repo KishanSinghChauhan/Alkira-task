@@ -1,5 +1,6 @@
 import { ReactComponent as SearchIcon } from 'assets/search.svg';
 import Input from 'components/Input';
+import CustomPagination from 'components/Pagination';
 import Table from 'components/Table';
 import TeamDrawer from 'components/TeamDrawer';
 import tableColumns from 'constant';
@@ -33,6 +34,11 @@ const Home = () => {
 						handleFilterSort={handleSort}
 					/>
 				</div>
+
+				<CustomPagination
+					totalPages={data?.pagination?.total_pages}
+					currentPage={data?.pagination?.current_page}
+				/>
 
 				<TeamDrawer show={show} onHide={() => setShow(false)} />
 			</div>

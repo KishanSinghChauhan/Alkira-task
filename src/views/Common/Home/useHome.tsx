@@ -77,6 +77,7 @@ const useHome = () => {
 		if (filteredData.length) {
 			return filteredData;
 		}
+
 		return data.teams;
 	};
 
