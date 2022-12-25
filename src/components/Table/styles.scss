@@ -42,6 +42,7 @@
 			background-color: #f8fbfd;
 			cursor: pointer;
 			margin-top: 12px;
+			transition: background-color 0.3s ease-in-out;
 
 			&:hover {
 				background-color: #f2f2f2;
