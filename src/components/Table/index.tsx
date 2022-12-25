@@ -1,13 +1,15 @@
 import './styles.scss';
 
+import { ReactComponent as UpIcon } from 'assets/up.svg';
 import clsx from 'clsx';
 import Loader from 'components/Loader';
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 type TableHead = {
 	title: string;
 	key: string;
+	filter?: boolean;
 };
 
 type TableProps = {
@@ -15,10 +17,23 @@ type TableProps = {
 	data: any[];
 	onRowClick?: () => void;
 	loading?: boolean;
+	handleFilterSort?: () => void;
 };
 
-const Table: FC<TableProps> = ({ columns, data, onRowClick, loading }) => {
+const Table: FC<TableProps> = ({
+	columns,
+	data,
+	onRowClick,
+	loading,
+	handleFilterSort,
+}) => {
 	const searchParams = useSearchParams();
+	const [sort, setSort] = useState(false);
+
+	useCallback(() => {
+		data?.reverse();
+	}, [sort]);
+
 	return (
 		<table
 			className={clsx('custom-table', {
@@ -30,6 +45,19 @@ const Table: FC<TableProps> = ({ columns, data, onRowClick, loading }) => {
 					{columns.map((d: TableHead) => (
 						<th style={{ width: `${100 / columns.length}%` }} key={d.title}>
 							{d.title}
+							{d.filter && (
+								<UpIcon
+									className={clsx('up-icon', {
+										'sort-icon': sort,
+									})}
+									onClick={() => {
+										setSort(!sort);
+										if (handleFilterSort) {
+											handleFilterSort();
+										}
+									}}
+								/>
+							)}
 						</th>
 					))}
 				</tr>
@@ -71,4 +99,5 @@ export default Table;
 Table.defaultProps = {
 	loading: false,
 	onRowClick: () => {},
+	handleFilterSort: () => {},
 };

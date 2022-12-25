@@ -9,7 +9,8 @@ import styles from './styles.module.scss';
 import useHome from './useHome';
 
 const Home = () => {
-	const { data, show, setShow, handleChange, teamsList, ref } = useHome();
+	const { data, show, setShow, handleChange, teamsList, ref, handleSort } =
+		useHome();
 
 	return (
 		<Container>
@@ -25,7 +26,12 @@ const Home = () => {
 				/>
 
 				<div className={styles.tableSec}>
-					<Table columns={tableColumns} data={teamsList()} loading={data.loading} />
+					<Table
+						columns={tableColumns}
+						data={teamsList()}
+						loading={data.loading}
+						handleFilterSort={handleSort}
+					/>
 				</div>
 
 				<TeamDrawer show={show} onHide={() => setShow(false)} />

@@ -14,6 +14,13 @@ const useHome = () => {
 
 	const [show, setShow] = useState<boolean>(false);
 
+	const handleSort = () => {
+		setData({
+			...data,
+			teams: data.teams.reverse(),
+		});
+	};
+
 	useEffect(() => {
 		setData({
 			...data,
@@ -80,6 +87,7 @@ const useHome = () => {
 		setShow,
 		ref,
 		data,
+		handleSort,
 	};
 };
 
